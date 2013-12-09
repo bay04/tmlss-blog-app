@@ -1,0 +1,19 @@
+
+
+<%= simple_form_for @post do |f| %>
+	
+<% if @post.errors.any? %>
+<ul>
+  <% @post.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+ 	<p><%= f.input :title %></p>
+ 	<p><%= f.input :body %></p>
+
+ 	<%= f.button :submit %>
+
+
+<% end %>
