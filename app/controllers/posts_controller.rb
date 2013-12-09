@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
   #Checking if a user is signed in to authorize the actions, only web admins can do it since they have accounts
   before_filter :double_auth, only: [:create, :new, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /posts
   # GET /posts.json
@@ -64,20 +65,22 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+   
+
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def post_params
+      params.require(:post).permit(:title, :body,)
+    end
+
+     # Use callbacks to share common setup or constraints between actions.
     def double_auth
         if !signed_in?
           redirect_to posts_url
         end
 
-    end
-
-    def set_post
-      @post = post.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :body)
     end
 end

@@ -1,0 +1,16 @@
+<% for p in @posts do %>
+	<h4><%= p.title %></h4/>
+	<p><%= p.body %></p>
+
+	<% if signed_in? %>
+		<%= link_to "Edit post", edit_post_path(p) %>
+		<%= link_to "Delete", post_path(p), method: :delete, confirm: "Sure you want to delete?" %>
+	<% end %>
+<% end %>
+
+<% if signed_in? %>
+	<p><%= link_to "New post", new_post_path %></p>
+<% end -%>
+
+
+	
