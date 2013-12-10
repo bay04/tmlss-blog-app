@@ -54,7 +54,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: tmlss-blog-app_production
+  database: dlk1ib0lckof2
   pool: 5
-  username: space
-  password:
+  username: iqjxvdhfixkfpn
+  password: gGJVRTNdwchAmlCtcwdGiam0ED

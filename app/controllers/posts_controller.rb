@@ -4,64 +4,46 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
 
-  # GET /posts
-  # GET /posts.json
   def index
     @posts = Post.all
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
   def show
   end
 
-  # GET /posts/new
+  
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
+ 
   def edit
   end
 
-  # post /posts
-  # post /posts.json
   def create
     @post = Post.new(post_params)
-
-    respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
+        redirect_to @post
+        flash[:notice] = "Post was created succesfully!"
       else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+        render 'new'
     end
   end
 
-  # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'post was successfully updated.' }
-        format.json { head :no_content }
+       redirect_to @post
+       flash[:notice] = "Post was updated!"
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+        render 'edit'
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
+ 
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    redirect_to posts_url
+    flash[:notice] = "Post was deleted!"
   end
 
   private
