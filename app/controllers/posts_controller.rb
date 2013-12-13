@@ -61,8 +61,10 @@ class PostsController < ApplicationController
      # Use callbacks to share common setup or constraints between actions.
     def double_auth
         if !signed_in?
+          flash[:notice] = "Only Tmlss programmers can be here!"
           redirect_to posts_url
-        end
 
+        end
     end
+
 end
